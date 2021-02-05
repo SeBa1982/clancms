@@ -72,7 +72,6 @@
                         @can('manage-users')
                             <a href="{{ route('dashboard') }}" class="dropdown-item">Admin - Dashboard</a>
                         @endcan
-
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
@@ -88,9 +87,67 @@
               </div>
             </div>
         </nav>
-        <main>
-            @yield('content')
-        </main>
+        <nav class="navbars navbar-expand d-flex flex-column align-item-start bg-dark" id="sidebar">
+            <ul class="navbar-nav d-flex flex-column w-100">
+                <li class="nav-item w-100">
+                    <a href="#" class="navs-link text-light pl-4">Dashboard</a>
+                </li>
+                <li class="nav-item dropdown w-100">
+                    <a href="#" class="navs-link text-light pl-4 dropdown-toggle" id="usersDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Users</a>
+                    <ul class="dropdown-menu w-100 dropdown-menu-dark" aria-labelledby="usersDropdown">
+                        <li><a href="{{ route('users.index') }}" class="dropdown-item text-light pl-4 p-2">User Liste</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item w-100">
+                    <a href="#" class="navs-link text-light pl-4">Beiträge</a>
+                </li>
+                <li class="nav-item w-100">
+                    <a href="#" class="navs-link text-light pl-4">Gästebuch</a>
+                </li>
+            </ul>
+            </nav>
+            <div class="container my-content">
+            <button class="btn btn-info my-4" id="menu-btn">Sidebar</button>
+                @include('partials.alerts')
+                @yield('content')
+            </div>
+            <script>
+                var menu_btn = document.querySelector('#menu-btn')
+                var sidebar = document.querySelector('#sidebar')
+                var my_content = document.querySelector('.my-content')
+
+                menu_btn.addEventListener("click", () => {
+                    sidebar.classList.toggle("active-nav")
+                    my_content.classList.toggle("active-cont")
+                })
+            </script>
+            <style>
+                .navbars {
+                    width: 250px;
+                    height: 100vh;
+                    position: fixed;
+                    margin-left: 0px;
+                    transition: all 0.4s;
+                }
+
+                .navs-link {
+                    font-size: 1.25em;
+                }
+                .my-content {
+                    margin-left: 250px;
+                    transition: all 0.4s;
+                }
+
+                .active-nav {
+                    margin-left: -300px;
+                }
+
+                .active-cont {
+                    margin-left: 0px;
+                }
+
+
+            </style>
     </div>
 </body>
 </html>

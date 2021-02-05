@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Post\CategoriesController;
+use App\Http\Controllers\Admin\Post\PostsController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('admin')->middleware('can:manage-users')->group(function(){
     Route::resource('users', UsersController::class, ['except' => ['show', 'create', 'store']]);
+
     Route::resource('categories', CategoriesController::class);
+
+    Route::resource('posts', PostsController::class);
+
+    Route::get('trashed-posts',[PostsController::class, 'trashed'])->name('trashedposts');
+
     Route::get('dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');

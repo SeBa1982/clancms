@@ -101,9 +101,9 @@
                 <li class="nav-item w-100">
                     <a href="#" class="navs-link text-light pl-4 dropdown-toggle" id="postsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Posts</a>
                     <ul class="dropdown-menu w-100 dropdown-menu-dark" aria-labelledby="postsDropdown">
-                        <li><a href="" class="dropdown-item text-light pl-4 p-2">Beiträge</a></li>
+                        <li><a href="{{ route('posts.index') }}" class="dropdown-item text-light pl-4 p-2">Beiträge</a></li>
                         <li><a href="{{ route('categories.index') }}" class="dropdown-item text-light pl-4 p-2">Kategorien</a></li>
-                        <li><a href="" class="dropdown-item text-light pl-4 p-2">Papierkorb</a></li>
+                        <li><a href="{{ route('trashedposts') }}" class="dropdown-item text-light pl-4 p-2">Papierkorb</a></li>
                     </ul>
                 </li>
                 <li class="nav-item w-100">

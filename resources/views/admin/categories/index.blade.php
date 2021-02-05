@@ -15,22 +15,27 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if ($categories->count() > 0)
                         @foreach ($categories as $categorie)
-                            <tr>
-                                <th scope="row">{{ $categorie->id }}</th>
-                                <td>{{ $categorie->name }}</td>
-                                <td>
-                                    @can('manage-categories')
-                                        <a href="{{ route('categories.edit', $categorie) }}"><button class="btn btn-primary btn-sm float-start mx-2">Edit</button></a>
-                                        <form action="{{ route('categories.destroy', $categorie) }}" method="post" class="float-start">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                                        </form>
-                                    @endcan
-                                </td>
-                            </tr>
+                        <tr>
+                            <th scope="row">{{ $categorie->id }}</th>
+                            <td>{{ $categorie->name }}</td>
+                            <td>
+                                @can('manage-categories')
+                                    <a href="{{ route('categories.edit', $categorie) }}"><button class="btn btn-primary btn-sm float-start mx-2">Edit</button></a>
+                                    <form action="{{ route('categories.destroy', $categorie) }}" method="post" class="float-start">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                    </form>
+                                @endcan
+                            </td>
+                        </tr>
                         @endforeach
+                        @else
+                        <td colspan="3"><h3 class="text-center">Keine Kategorien vorhanden</h3></td>
+                        @endif
+
                     </tbody>
                 </table>
             </div>
